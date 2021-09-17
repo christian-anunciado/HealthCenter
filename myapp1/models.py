@@ -5,18 +5,28 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+
+from django.contrib import admin
+from django.contrib.admin.decorators import display
 from django.db import models
+from django.db.models.deletion import CASCADE
+from django.db.models.expressions import OrderBy
 
 
 class Consult(models.Model):
-    consult_id = models.AutoField(db_column='consult_ID', primary_key=True)  # Field name made lowercase.
+
+    # Field name made lowercase.
+    consult_id = models.AutoField(db_column='consult_ID', primary_key=True)
     date = models.DateField()
-    patient = models.ForeignKey('Patients', models.DO_NOTHING, db_column='patient_ID')  # Field name made lowercase.
+    # Field name made lowercase.
+    patient = models.ForeignKey(
+        'Patients', models.DO_NOTHING, db_column='patient_ID')
     doctor = models.ForeignKey('Doctors', models.DO_NOTHING)
-    test = models.ForeignKey('Tests', models.DO_NOTHING, db_column='test_ID')  # Field name made lowercase.
+    # Field name made lowercase.
+    test = models.ForeignKey('Tests', models.DO_NOTHING, db_column='test_ID')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'consult'
 
 
@@ -25,42 +35,59 @@ class Doctors(models.Model):
     name = models.CharField(max_length=200)
     specialization = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
-        managed = False
+        managed = True
         db_table = 'doctors'
 
 
 class Patients(models.Model):
-    patient_id = models.IntegerField(db_column='patient_ID', primary_key=True)  # Field name made lowercase.
+    # Field name made lowercase.
+    patient_id = models.IntegerField(db_column='patient_ID', primary_key=True)
     name = models.CharField(max_length=200)
     insurance = models.CharField(max_length=200)
     password = models.CharField(max_length=100)
-    contactno = models.CharField(db_column='contactNo', max_length=15)  # Field name made lowercase.
+    # Field name made lowercase.
+    contactno = models.CharField(db_column='contactNo', max_length=15)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'patients'
 
 
 class Performed(models.Model):
-    result_id = models.AutoField(db_column='result_ID', primary_key=True)  # Field name made lowercase.
+    # Field name made lowercase.
+    result_id = models.AutoField(db_column='result_ID', primary_key=True)
     result = models.CharField(max_length=20)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'performed'
 
 
 class Records(models.Model):
-    record_id = models.AutoField(db_column='record_ID', primary_key=True)  # Field name made lowercase.
-    test = models.ForeignKey('Tests', models.DO_NOTHING, db_column='test_ID')  # Field name made lowercase.
+    # Field name made lowercase.
+    record_id = models.AutoField(db_column='record_ID', primary_key=True)
+    # Field name made lowercase.
+    test = models.ForeignKey('Tests', models.DO_NOTHING, db_column='test_ID')
     doctor = models.ForeignKey(Doctors, models.DO_NOTHING)
-    patient = models.ForeignKey(Patients, models.DO_NOTHING, db_column='patient_ID')  # Field name made lowercase.
-    result = models.ForeignKey(Performed, models.DO_NOTHING, db_column='result_ID')  # Field name made lowercase.
-    consult = models.ForeignKey(Consult, models.DO_NOTHING, db_column='consult_ID')  # Field name made lowercase.
+    # Field name made lowercase.
+    patient = models.ForeignKey(
+        Patients, models.DO_NOTHING, db_column='patient_ID')
+    # Field name made lowercase.
+    result = models.ForeignKey(
+        Performed, models.DO_NOTHING, db_column='result_ID')
+    # Field name made lowercase.
+    consult = models.ForeignKey(
+        Consult, models.DO_NOTHING, db_column='consult_ID')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'records'
 
 
@@ -69,6 +96,10 @@ class Tests(models.Model):
     test_name = models.CharField(max_length=150)
     price = models.IntegerField()
 
+    def __str__(self):
+        return self.test_name
+
     class Meta:
-        managed = False
+        ordering = ('test_id',)
+        managed = True
         db_table = 'tests'

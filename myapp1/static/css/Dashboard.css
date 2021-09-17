@@ -1,0 +1,133 @@
+.u-section-1 .u-sheet-1 {
+  min-height: 294px;
+}
+
+.u-section-1 .u-text-1 {
+  margin: 60px auto 0;
+}
+
+.u-section-1 .u-text-2 {
+  width: 680px;
+  margin: 20px auto 0;
+}
+
+.u-section-1 .u-btn-1 {
+  border-style: solid;
+  letter-spacing: 0px;
+  font-weight: 700;
+  text-transform: uppercase;
+  animation-duration: 1000ms;
+  margin: 30px auto 60px;
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-text-2 {
+    width: 540px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-text-2 {
+    width: 340px;
+  }
+}
+
+.u-section-2 .u-sheet-1 {
+  min-height: 464px;
+}
+
+.u-section-2 .u-table-1 {
+  margin: 42px auto 42px 0;
+}
+
+.u-block-4ef9-46 {
+  background-image: none;
+}
+
+.u-section-2 .u-table-entity-1 {
+  min-height: 100px;
+}
+
+.u-section-2 .u-table-header-1 {
+  font-weight: 700;
+  background-image: none;
+}
+
+.u-block-4ef9-35 {
+  background-image: none;
+}
+
+@media (max-width: 1199px) {
+  .u-section-2 .u-table-1 {
+    margin-right: initial;
+    margin-left: initial;
+  }
+}
+
+.u-section-3 .u-sheet-1 {
+  min-height: 294px;
+}
+
+.u-section-3 .u-text-1 {
+  margin: 0px auto 0;
+}
+
+.u-section-3 .u-text-2 {
+  width: 680px;
+  margin: 20px auto 0;
+}
+
+.u-section-3 .u-btn-1 {
+  border-style: solid;
+  letter-spacing: 0px;
+  font-weight: 700;
+  text-transform: uppercase;
+  animation-duration: 1000ms;
+  margin: 30px auto 20px;
+}
+
+@media (max-width: 767px) {
+  .u-section-3 .u-text-2 {
+    width: 540px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-3 .u-text-2 {
+    width: 340px;
+  }
+}
+
+.u-section-4 .u-sheet-1 {
+  min-height: 464px;
+}
+
+.u-section-4 .u-table-1 {
+  margin: 0px auto 40px 0;
+}
+
+.u-block-79ff-46 {
+  background-image: none;
+}
+
+.u-section-4 .u-table-entity-1 {
+  min-height: 100px;
+}
+
+.u-section-4 .u-table-header-1 {
+  font-weight: 700;
+  background-image: none;
+}
+
+.u-block-79ff-35 {
+  background-image: none;
+}
+
+@media (max-width: 1199px) {
+  .u-section-4 .u-table-1 {
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+
+}
