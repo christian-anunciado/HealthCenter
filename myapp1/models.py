@@ -9,6 +9,7 @@
 from django.contrib import admin
 from django.contrib.admin.decorators import display
 from django.db import models
+from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from django.db.models.expressions import OrderBy
 
@@ -52,8 +53,7 @@ class Patients(models.Model):
     # Field name made lowercase.
     contactno = models.CharField(db_column='contactNo', max_length=15)
 
-    def __str__(self):
-        return self.name
+    
 
     class Meta:
         managed = True
