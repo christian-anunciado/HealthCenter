@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 
+from datetime import datetime, date
 from django.contrib import admin
 from django.contrib.admin.decorators import display
 from django.db import models
@@ -25,6 +26,11 @@ class Consult(models.Model):
     doctor = models.ForeignKey('Doctors', models.DO_NOTHING)
     # Field name made lowercase.
     test = models.ForeignKey('Tests', models.DO_NOTHING, db_column='test_ID')
+    def __str__(self):
+        date_to_string = str(self.date)
+        format_datetime = datetime.strptime(date_to_string,"%Y-%m-%d")
+        datetime_to_string = datetime.strftime(format_datetime, '%A, %b %d %y')
+        return datetime_to_string
 
     class Meta:
         managed = True
@@ -32,7 +38,7 @@ class Consult(models.Model):
 
 
 class Doctors(models.Model):
-    doctor_id = models.IntegerField(primary_key=True)
+    doctor_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
     specialization = models.CharField(max_length=100)
 
@@ -46,13 +52,15 @@ class Doctors(models.Model):
 
 class Patients(models.Model):
     # Field name made lowercase.
-    patient_id = models.IntegerField(db_column='patient_ID', primary_key=True)
+    patient_id = models.AutoField(db_column='patient_ID', primary_key=True)
     name = models.CharField(max_length=200)
     insurance = models.CharField(max_length=200)
-    password = models.CharField(max_length=100)
     # Field name made lowercase.
     contactno = models.CharField(db_column='contactNo', max_length=15)
+    email = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.name
     
 
     class Meta:
@@ -64,6 +72,9 @@ class Performed(models.Model):
     # Field name made lowercase.
     result_id = models.AutoField(db_column='result_ID', primary_key=True)
     result = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.result
 
     class Meta:
         managed = True
@@ -92,7 +103,7 @@ class Records(models.Model):
 
 
 class Tests(models.Model):
-    test_id = models.IntegerField(primary_key=True)
+    test_id = models.AutoField(primary_key=True)
     test_name = models.CharField(max_length=150)
     price = models.IntegerField()
 
